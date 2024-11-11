@@ -5,8 +5,6 @@ import back_arrow_icon from "../assets/back_arrow_icon.png";
 import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../config.js";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
 const TMDB_API_KEY = "2e50bafb203c56a23bf1bc3de91ad30b";
 const OMDB_API_KEY = "940a9bb6";
 
