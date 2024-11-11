@@ -1,0 +1,71 @@
+/* FavoritesPage.css */
+
+.favorites-page {
+  color: #fff; /* White text */
+  padding: 20px;
+  min-height: 100vh; /* Full height */
+}
+
+.favorites-page h2 {
+  margin: 0 auto 20px auto; /* Center the title with margin below */
+  font-size: 36px; /* Larger font size for the title */
+  font-weight: bold; /* Bold font */
+  letter-spacing: 1px; /* Slight letter spacing */
+  text-transform: uppercase; /* Uppercase text */
+  font-family: "Arial", sans-serif; /* A clean sans-serif font */
+  text-align: center; /* Center text */
+}
+
+.favorites-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.favorites-list li {
+  list-style: none;
+  background-color: #222; /* Slightly lighter than background */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px;
+  transition: transform 0.2s; /* Smooth hover effect */
+}
+
+.favorites-list li:hover {
+  transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.favorites-list img {
+  width: 100%;
+  border-radius: 5px; /* Match rounded corners */
+}
+
+.remove-button {
+  background-color: #e50914; /* Netflix red */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Smooth transition */
+}
+
+.remove-button:hover {
+  background-color: #f40612; /* Darker red on hover */
+}
+
+.back-button {
+  background-color: #e50914; /* Netflix red */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.2s; /* Smooth transition */
+  margin-top: 20px; /* Space above the button */
+}
+
+.back-button:hover {
+  background-color: #f40612; /* Darker red on hover */
+}

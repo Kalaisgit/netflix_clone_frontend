@@ -1,0 +1,78 @@
+.profiles-page {
+  background-color: #f7f5f5;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 1000px;
+  margin: auto; /* Center the profiles container */
+}
+
+.profiles-container {
+  background-color: #141414;
+  color: white;
+  padding: 20px;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: auto; /* Center the profiles container */
+}
+
+.profiles-heading {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.profiles-list {
+  display: flex; /* Use flexbox for layout */
+  flex-wrap: wrap; /* Allow items to wrap onto the next line */
+  gap: 15px; /* Space between profile items */
+  justify-content: center; /* Center align items */
+  margin-top: 20px; /* Add some margin at the top */
+}
+
+.profiles-list:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+}
+
+.profile-box {
+  background-color: #1c1c1c;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-name {
+  flex: 1; /* Make name take available space */
+}
+
+.profile-input {
+  margin-top: 10px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.profile-save-button,
+.profile-edit-button,
+.profile-delete-button,
+.add-profile-button {
+  background-color: #e50914; /* Netflix red */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin-left: 5px; /* Space between buttons */
+}
+
+.profile-save-button:hover,
+.profile-edit-button:hover,
+.profile-delete-button:hover,
+.add-profile-button:hover {
+  background-color: #f40612; /* Darker red on hover */
+}

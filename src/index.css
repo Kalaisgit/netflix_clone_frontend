@@ -1,0 +1,20 @@
+/* index.css */
+
+/* Reset some default browser styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%; /* Ensure the html and body elements take full height */
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Use a modern font */
+  background-color: #121212; /* Dark background for the entire app */
+  color: #ffffff; /* White text for contrast */
+  line-height: 1.6; /* Better line height for readability */
+}

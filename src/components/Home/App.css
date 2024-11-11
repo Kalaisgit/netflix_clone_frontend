@@ -1,0 +1,15 @@
+/* App.css */
+
+.app-container {
+  padding: 20px;
+}
+
+.app-heading {
+  text-align: center;
+  font-family: "Helvetica", sans-serif;
+  font-weight: bold;
+  font-size: 36px;
+  color: #e50914; /* Netflix red color */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Adds shadow for better visibility */
+  margin-bottom: 20px; /* Adds space below the heading */
+}

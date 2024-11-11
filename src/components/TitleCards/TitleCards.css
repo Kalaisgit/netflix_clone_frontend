@@ -1,0 +1,54 @@
+/* Container and title styling */
+.title-cards {
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+
+.title-cards h2 {
+  margin-bottom: 8px;
+  color: #fff;
+  font-size: 1rem;
+}
+
+/* Card list styling */
+.card-list {
+  display: flex;
+  gap: 10px; /* Space between cards */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of items */
+  padding-bottom: 10px; /* Space at the bottom for better visual */
+}
+
+/* Card styling */
+.card {
+  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
+  position: relative;
+}
+
+/* Card image styling */
+.card img {
+  width: 240px; /* Fixed width for images */
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Card title styling */
+.card p {
+  background-color: rgb(8, 8, 8);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  position: absolute;
+  bottom: 2px;
+  right: 5px; /* Align to the left */
+  text-wrap: pretty;
+}
+
+/* Hide scrollbar for WebKit browsers */
+.card-list::-webkit-scrollbar {
+  display: none; /* Hide scrollbar */
+}
+
+.card:hover {
+  box-shadow: 0 2px 8px rgb(182, 182, 182); /* Add shadow on hover */
+}
