@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom"; // Import useNavigate for routin
 import axios from "axios"; // Import axios for making API calls
 import API_BASE_URL from "../../config.js";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
 function Profiles({ userEmail }) {
   const [profiles, setProfiles] = useState([]); // Start with an empty array
   const [newProfileName, setNewProfileName] = useState("");

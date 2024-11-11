@@ -5,8 +5,6 @@ import Profiles from "../Profiles/Profiles"; // Import Profiles component
 import ReasonsToJoin from "../Reasons/ReasonsToJoin";
 import API_BASE_URL from "../../config.js";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
 function Login(props) {
   const { onLogin } = props; // Destructure onLogin from props
   const [authenticated, setAuthenticated] = useState(false);

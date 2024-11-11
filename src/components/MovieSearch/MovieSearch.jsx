@@ -7,8 +7,6 @@ import "./MovieSearch.css";
 import back_arrow_icon from "../assets/back_arrow_icon.png";
 import API_BASE_URL from "../../config.js";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
 const API_KEY = "940a9bb6";
 const BASE_URL = "https://www.omdbapi.com/";
 

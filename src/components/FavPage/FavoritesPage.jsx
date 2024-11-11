@@ -5,8 +5,6 @@ import axios from "axios";
 import "./FavoritesPage.css"; // Import your CSS file
 import API_BASE_URL from "../../config.js";
 
-const API_BASE_URL = process.env.API_BASE_URL;
-
 function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
   const [email, setEmail] = useState("");
