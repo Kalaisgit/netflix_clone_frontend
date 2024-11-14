@@ -17,9 +17,11 @@ function Login(props) {
           method: "GET",
           credentials: "include",
         });
+        console.log(response); // Log the response
 
         if (response.ok) {
           const data = await response.json();
+          console.log("Authentication data:", data); // Log the response data
           setAuthenticated(data.authenticated);
           if (data.authenticated) {
             onLogin(data.email); // Call onLogin prop with email
@@ -35,6 +37,7 @@ function Login(props) {
   }, [navigate, onLogin]);
 
   function handleLogin() {
+    console.log("Get Started clicked");
     window.location.href = `${API_BASE_URL}/auth/google`;
   }
 
