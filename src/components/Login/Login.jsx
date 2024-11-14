@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "./Login.css";
 import { useNavigate } from "react-router-dom";
-import Profiles from "../Profiles/Profiles"; // Import Profiles component
+import Profiles from "../Profiles/Profiles";
 import ReasonsToJoin from "../Reasons/ReasonsToJoin";
 import API_BASE_URL from "../../config.js";
 
@@ -9,7 +10,6 @@ function Login(props) {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Check authentication status after the component mounts
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -20,11 +20,10 @@ function Login(props) {
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Authentication status:", data); // Debugging line
           setAuthenticated(data.authenticated);
           if (data.authenticated) {
-            onLogin(data.email); // Call the onLogin prop with the user's email
-            navigate("/profiles"); // Navigate to profiles if authenticated
+            onLogin(data.email); // Call onLogin prop with email
+            navigate("/profiles"); // Redirect to profiles
           }
         }
       } catch (error) {
@@ -32,11 +31,10 @@ function Login(props) {
       }
     };
 
-    checkAuth(); // Call the function to check authentication
-  }, [navigate, onLogin]); // Add onLogin as a dependency
+    checkAuth(); // Check authentication status
+  }, [navigate, onLogin]);
 
   function handleLogin() {
-    // Redirect to Google authentication
     window.location.href = `${API_BASE_URL}/auth/google`;
   }
 

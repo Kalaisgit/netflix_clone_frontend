@@ -25,3 +25,18 @@
   cursor: pointer; /* Pointer cursor on hover */
   transition: background-color 0.3s ease; /* Smooth transition */
 }
+
+/* Login.css */
+.login-button {
+  background-color: #e50914; /* Red color like Netflix */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #f40612; /* Darker red on hover */
+}
