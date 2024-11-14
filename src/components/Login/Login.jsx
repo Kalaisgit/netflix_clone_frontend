@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import Profiles from "../Profiles/Profiles"; // Import Profiles component
 import ReasonsToJoin from "../Reasons/ReasonsToJoin";
@@ -21,6 +20,7 @@ function Login(props) {
 
         if (response.ok) {
           const data = await response.json();
+          console.log("Authentication status:", data); // Debugging line
           setAuthenticated(data.authenticated);
           if (data.authenticated) {
             onLogin(data.email); // Call the onLogin prop with the user's email
@@ -32,8 +32,8 @@ function Login(props) {
       }
     };
 
-    checkAuth(); // Check authentication when the component mounts
-  }, [navigate, onLogin]);
+    checkAuth(); // Call the function to check authentication
+  }, [navigate, onLogin]); // Add onLogin as a dependency
 
   function handleLogin() {
     // Redirect to Google authentication
@@ -42,9 +42,7 @@ function Login(props) {
 
   return (
     <div className="login-container">
-      {authenticated === null ? (
-        <p>Loading...</p> // Show loading while checking authentication
-      ) : !authenticated ? (
+      {!authenticated ? (
         <div>
           <h2 className="login-heading">
             Unlimited movies, TV shows, and more
@@ -63,4 +61,5 @@ function Login(props) {
     </div>
   );
 }
+
 export default Login;
