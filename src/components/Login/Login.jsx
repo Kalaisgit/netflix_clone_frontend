@@ -32,8 +32,8 @@ function Login(props) {
       }
     };
 
-    checkAuth(); // Call the function to check authentication
-  }, [navigate, onLogin]); // Add onLogin as a dependency
+    checkAuth(); // Check authentication when the component mounts
+  }, [navigate, onLogin]);
 
   function handleLogin() {
     // Redirect to Google authentication
@@ -42,7 +42,9 @@ function Login(props) {
 
   return (
     <div className="login-container">
-      {!authenticated ? (
+      {authenticated === null ? (
+        <p>Loading...</p> // Show loading while checking authentication
+      ) : !authenticated ? (
         <div>
           <h2 className="login-heading">
             Unlimited movies, TV shows, and more
@@ -61,5 +63,4 @@ function Login(props) {
     </div>
   );
 }
-
 export default Login;
