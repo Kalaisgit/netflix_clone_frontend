@@ -5,8 +5,7 @@ import Profiles from "../Profiles/Profiles";
 import ReasonsToJoin from "../Reasons/ReasonsToJoin";
 import API_BASE_URL from "../../config.js";
 
-function Login(props) {
-  const { onLogin } = props; // Destructure onLogin from props
+function Login({ onLogin }) {
   const [authenticated, setAuthenticated] = useState(false);
   const navigate = useNavigate();
 
@@ -15,17 +14,18 @@ function Login(props) {
       try {
         const response = await fetch(`${API_BASE_URL}/auth/status`, {
           method: "GET",
-          credentials: "include",
+          credentials: "include", // Send cookies with request
         });
-        console.log(response); // Log the response
+        console.log("Auth Status Response:", response);
 
         if (response.ok) {
           const data = await response.json();
-          console.log("Authentication data:", data); // Log the response data
+          console.log("Authentication Data:", data);
+
           setAuthenticated(data.authenticated);
           if (data.authenticated) {
-            onLogin(data.email); // Call onLogin prop with email
-            navigate("/profiles"); // Redirect to profiles
+            onLogin(data.email); // Trigger parent login handler
+            navigate("/profiles");
           }
         }
       } catch (error) {
@@ -33,13 +33,13 @@ function Login(props) {
       }
     };
 
-    checkAuth(); // Check authentication status
+    checkAuth();
   }, [navigate, onLogin]);
 
-  function handleLogin() {
-    console.log("Get Started clicked");
+  const handleLogin = () => {
+    console.log("Redirecting to Google Login...");
     window.location.href = `${API_BASE_URL}/auth/google`;
-  }
+  };
 
   return (
     <div className="login-container">
@@ -57,7 +57,7 @@ function Login(props) {
           </div>
         </div>
       ) : (
-        <Profiles /> // Show Profiles component if authenticated
+        <Profiles />
       )}
     </div>
   );
