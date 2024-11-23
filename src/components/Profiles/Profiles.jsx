@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./Profiles.css"; // Import the new CSS file
 import { useNavigate } from "react-router-dom"; // Import useNavigate for routing
 import axios from "axios"; // Import axios for making API calls
-import API_BASE_URL from "../../config.js";
 
 function Profiles({ userEmail }) {
   const [profiles, setProfiles] = useState([]); // Start with an empty array
@@ -15,10 +14,13 @@ function Profiles({ userEmail }) {
   useEffect(() => {
     async function fetchProfiles() {
       try {
-        const response = await axios.get(`${API_BASE_URL}/profiles`, {
-          params: { email: userEmail }, // Send userEmail as a query parameter
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.API_BASE_URL}/profiles`,
+          {
+            params: { email: userEmail }, // Send userEmail as a query parameter
+            withCredentials: true,
+          }
+        );
 
         const fetchedProfiles = response.data;
 
@@ -45,18 +47,24 @@ function Profiles({ userEmail }) {
     }
 
     try {
-      const userResponse = await axios.get(`${API_BASE_URL}/auth/status`, {
-        withCredentials: true,
-      });
+      const userResponse = await axios.get(
+        `${process.env.API_BASE_URL}/auth/status`,
+        {
+          withCredentials: true,
+        }
+      );
 
       if (userResponse.data.authenticated) {
         const userEmail = userResponse.data.email;
 
         // Get the user_id from the database based on the email
-        const userResult = await axios.get(`${API_BASE_URL}/users`, {
-          params: { email: userEmail },
-          withCredentials: true,
-        });
+        const userResult = await axios.get(
+          `${process.env.API_BASE_URL}/users`,
+          {
+            params: { email: userEmail },
+            withCredentials: true,
+          }
+        );
 
         if (userResult.data && userResult.data.user_id) {
           const newProfile = {
@@ -65,7 +73,7 @@ function Profiles({ userEmail }) {
           };
 
           const response = await axios.post(
-            `${API_BASE_URL}/profiles`,
+            `${process.env.API_BASE_URL}/profiles`,
             newProfile,
             { withCredentials: true }
           );
@@ -96,7 +104,7 @@ function Profiles({ userEmail }) {
     }
 
     try {
-      await axios.delete(`${API_BASE_URL}/profiles/${id}`, {
+      await axios.delete(`${process.env.API_BASE_URL}/profiles/${id}`, {
         withCredentials: true,
       });
       const updatedProfiles = profiles.filter(
@@ -124,7 +132,7 @@ function Profiles({ userEmail }) {
     const updatedProfile = { profile_id: id, profile_name: editedProfileName };
 
     try {
-      await axios.put(`${API_BASE_URL}/profiles`, updatedProfile, {
+      await axios.put(`${process.env.API_BASE_URL}/profiles`, updatedProfile, {
         withCredentials: true,
       });
       const updatedProfiles = profiles.map((profile) =>

@@ -5,7 +5,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import TitleCards from "../TitleCards/TitleCards";
 import "./MovieSearch.css";
 import back_arrow_icon from "../assets/back_arrow_icon.png";
-import API_BASE_URL from "../../config.js";
 
 const API_KEY = "940a9bb6";
 const BASE_URL = "https://www.omdbapi.com/";
@@ -26,9 +25,12 @@ function MovieSearch() {
   useEffect(() => {
     async function checkAuthStatus() {
       try {
-        const response = await axios.get(`${API_BASE_URL}/auth/status`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.API_BASE_URL}/auth/status`,
+          {
+            withCredentials: true,
+          }
+        );
         if (response.data.authenticated) {
           setEmail(response.data.email);
           setUserId(response.data.userId);
@@ -51,10 +53,13 @@ function MovieSearch() {
   async function fetchFavorites(userId, email, profileId) {
     if (!userId || !email || !profileId) return;
     try {
-      const response = await axios.get(`${API_BASE_URL}/favorites`, {
-        params: { user_id: userId, email: email, profile_id: profileId },
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.API_BASE_URL}/favorites`,
+        {
+          params: { user_id: userId, email: email, profile_id: profileId },
+          withCredentials: true,
+        }
+      );
       setFavorites(response.data || []);
     } catch (error) {
       console.error("Error fetching favorites:", error);
@@ -112,7 +117,7 @@ function MovieSearch() {
     try {
       if (isFavorite) {
         // Remove from favorites
-        await axios.delete(`${API_BASE_URL}/favorites`, {
+        await axios.delete(`${process.env.API_BASE_URL}/favorites`, {
           data: movieDetails,
         });
         setFavorites(
@@ -124,7 +129,7 @@ function MovieSearch() {
       } else {
         // Add to favorites
         const response = await axios.post(
-          `${API_BASE_URL}/favorites`,
+          `${process.env.API_BASE_URL}/favorites`,
           movieDetails
         );
         setFavorites([...favorites, response.data]);
@@ -142,7 +147,7 @@ function MovieSearch() {
   async function handleLogout() {
     try {
       const response = await axios.post(
-        `${API_BASE_URL}/auth/logout`,
+        `${process.env.API_BASE_URL}/auth/logout`,
         {},
         {
           withCredentials: true, // Ensure cookies are sent with the request
@@ -209,7 +214,9 @@ function MovieSearch() {
         View Favorites
       </button>
       <button onClick={handleNavigateBack} className="mb-4 back-button">
-        <img src={back_arrow_icon}></img>
+        <img src={back_arrow_icon} alt="back arrow">
+          {" "}
+        </img>
       </button>
 
       {loading ? (

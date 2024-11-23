@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import FavoritesList from "../FavList/FavoritesList"; // Ensure this component is implemented correctly
 import axios from "axios";
 import "./FavoritesPage.css"; // Import your CSS file
-import API_BASE_URL from "../../config.js";
 
 function FavoritesPage() {
   const [favorites, setFavorites] = useState([]);
@@ -15,9 +14,12 @@ function FavoritesPage() {
   useEffect(() => {
     async function fetchFavorites() {
       try {
-        const response = await axios.get(`${API_BASE_URL}/auth/status`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.API_BASE_URL}/auth/status`,
+          {
+            withCredentials: true,
+          }
+        );
 
         if (response.data.authenticated) {
           // Check if both email and userId are provided in the auth response
@@ -31,7 +33,7 @@ function FavoritesPage() {
 
             // Fetch favorites only if email, userId, and profileId are available
             const favoritesResponse = await axios.get(
-              `${API_BASE_URL}/favorites`,
+              `${process.env.API_BASE_URL}/favorites`,
               {
                 params: { profile_id: profileId },
                 withCredentials: true,
@@ -60,7 +62,7 @@ function FavoritesPage() {
     try {
       // Construct the URL using movie_id and profileId
       const response = await axios.delete(
-        `${API_BASE_URL}/favorites/${movie.movie_id}/${profileId}`,
+        `${process.env.API_BASE_URL}/favorites/${movie.movie_id}/${profileId}`,
         {
           withCredentials: true,
         }

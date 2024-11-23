@@ -3,7 +3,6 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import Profiles from "../Profiles/Profiles";
 import ReasonsToJoin from "../Reasons/ReasonsToJoin";
-import API_BASE_URL from "../../config.js";
 
 function Login({ onLogin }) {
   const [authenticated, setAuthenticated] = useState(false);
@@ -12,10 +11,13 @@ function Login({ onLogin }) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/auth/status`, {
-          method: "GET",
-          credentials: "include", // Send cookies with request
-        });
+        const response = await fetch(
+          `${process.env.API_BASE_URL}/auth/status`,
+          {
+            method: "GET",
+            credentials: "include", // Send cookies with request
+          }
+        );
         console.log("Auth Status Response:", response);
 
         if (response.ok) {
@@ -38,7 +40,7 @@ function Login({ onLogin }) {
 
   const handleLogin = () => {
     console.log("Redirecting to Google Login...");
-    window.location.href = `${API_BASE_URL}/auth/google`;
+    window.location.href = `${process.env.API_BASE_URL}/auth/google`;
   };
 
   return (

@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import back_arrow_icon from "../assets/back_arrow_icon.png";
 import { useNavigate } from "react-router-dom";
-import API_BASE_URL from "../../config.js";
 
 const TMDB_API_KEY = "2e50bafb203c56a23bf1bc3de91ad30b";
 const OMDB_API_KEY = "940a9bb6";
@@ -43,7 +42,7 @@ function MovieList({
       if (isFavorite) {
         // Remove from favorites
         await axios.delete(
-          `${API_BASE_URL}/favorites/${movie.imdbID}/${profileId}`,
+          `${process.env.API_BASE_URL}/favorites/${movie.imdbID}/${profileId}`,
           { withCredentials: true }
         );
         setFavorites(
@@ -55,7 +54,7 @@ function MovieList({
       } else {
         // Add to favorites
         const response = await axios.post(
-          `${API_BASE_URL}/favorites`,
+          `${process.env.API_BASE_URL}/favorites`,
           movieDetails,
           { withCredentials: true }
         );
@@ -135,10 +134,13 @@ function MovieList({
   useEffect(() => {
     async function fetchFavorites() {
       try {
-        const response = await axios.get(`${API_BASE_URL}/favorites`, {
-          params: { email: userEmail, profile_id: profileId, user: userId },
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `${process.env.API_BASE_URL}/favorites`,
+          {
+            params: { email: userEmail, profile_id: profileId, user: userId },
+            withCredentials: true,
+          }
+        );
         console.log("Fetched favorites:", response.data);
         setFavorites(response.data);
       } catch (error) {
